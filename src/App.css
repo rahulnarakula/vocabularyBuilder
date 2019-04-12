@@ -1,0 +1,7 @@
+li.choice{
+    cursor: pointer;
+}
+
+#choice-section{
+    list-style: none;
+}
