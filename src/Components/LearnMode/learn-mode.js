@@ -15,8 +15,16 @@ export class LearnMode extends Component{
 class WordContent extends Component{
     constructor(props){
         super(props);
+        this.state={
+            should_display_definition:false
+        };
     }
 
+    triggerDefinition(){
+        if(!this.state.should_display_definition){
+            this.setState({should_display_definition:true});
+        }
+    }
     render(){           
         const content = "Nina’s long and tortuous journey was filled with twists and turns along the mountain road. Although Nina had noticed that her chosen route would have many bends, she had had no idea that she was in for such a tortuous or complex ride. When she had finally navigated through that winding, tortuous, and roundabout road, she felt like she too was all wound up";
         const questionContent = {
@@ -34,7 +42,10 @@ class WordContent extends Component{
                 <div className="context-body card-body">
                     <Statement content={content}/>
                     <Question content={questionContent}/>                
-                    <Definition />
+                    <Definition 
+                    display={this.state.should_display_definition}
+                    onClick={()=>this.triggerDefinition()}
+                    />
                 </div>
             </div>
         );
@@ -53,17 +64,22 @@ class Question extends Component{
     constructor(props){
         super(props);
         this.state = {
+            selected_options:[],
             content:props.content,
             is_question_completed: false
                     }
     }
-    handleClick(index){
+    handleClick(isAnswer,index){
         if(!this.state.is_question_completed){
-            if(index==this.state.content.correct_answer){
-                console.log("correct");
+            if(isAnswer){
+                let selectedOptions = this.state.selected_options;
+                selectedOptions.push(index);
+                this.setState({selected_options:selectedOptions});
                 this.setState({is_question_completed:true});
             } else{
-                console.log("wrong");
+                let selectedOptions = this.state.selected_options;
+                selectedOptions.push(index);
+                this.setState({selected_options:selectedOptions});
             }
         } else{
             return false;
@@ -71,10 +87,12 @@ class Question extends Component{
     }
     render(){
         const listAnswers = this.state.content.answers.map((answer,index)=>
-            <li className="choice answer border my-3 rounded p-2" key={index+1} onClick={()=>this.handleClick(index+1)}>
-                <span className="result mr-2">{index+1}.</span>
-                {answer}
-            </li>
+            <AnswerOption 
+            answer={answer} 
+            key={index} 
+            selected={this.state.selected_options.includes(index)} 
+            index={index} isAnswer={this.state.content.correct_answer==index+1} 
+            wrongColor={this.state.wrong_answer_color} onClick={(i,j)=>this.handleClick(i,j)} />
         );
 
         return (
@@ -88,6 +106,29 @@ class Question extends Component{
                     </ul>
                 </div>
             </div>
+        );
+    }
+}
+
+class AnswerOption extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            correct_answer_color:"green",
+            wrong_answer_color:"red",
+            content:props.content,
+            is_question_completed: false
+                    }
+    }
+    render(){
+        return (
+            <li 
+            className="choice answer border my-3 rounded p-2" 
+            style={this.props.selected? this.props.isAnswer?{background: this.state.correct_answer_color}:{background: this.state.wrong_answer_color}:{background: "none"}} 
+            onClick={()=>this.props.onClick(this.props.isAnswer,this.props.index)}>
+                <span className="result mr-2">{this.props.index+1}.</span>
+                {this.props.answer}
+            </li>
         );
     }
 }
@@ -141,13 +182,23 @@ function WordIngredient(){
     );
 }
 
-function Definition(){
+function Definition(props){
     return (
         <div id="definition">
-            <button className="show-definition btn btn-primary my-2">Definition</button>
-            <div className="def-bubble bg-info text-white p-3">
-                Something that is <em>tortuous</em>, like a piece of writing, is long and complicated with many twists and turns of direction; a <em>tortuous</em> argument can be deceitful because it twists or turns the truth.
-            </div>
+            <button className="show-definition btn btn-primary my-2"  onClick={()=>props.onClick()}>Definition</button>
+            <DefinitionText display={props.display}/>
         </div>
     );
+}
+
+function DefinitionText(props){
+    if(props.display){
+        return (
+            <div className="def-bubble bg-info text-white p-3">
+                    Something that is <em>tortuous</em>, like a piece of writing, is long and complicated with many twists and turns of direction; a <em>tortuous</em> argument can be deceitful because it twists or turns the truth.
+                </div>
+        );
+    } else {
+        return null;
+    }
 }
