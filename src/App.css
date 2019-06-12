@@ -5,3 +5,10 @@ li.choice{
 #choice-section{
     list-style: none;
 }
+
+.letter-block > input {
+    width: 50px;
+    height: 50px;
+    padding:10px;
+    font-size: 20px
+}
