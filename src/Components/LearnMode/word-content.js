@@ -18,16 +18,8 @@ export class WordContent extends Component{
         }
     }
     render(){           
-        const content = "Nina’s long and tortuous journey was filled with twists and turns along the mountain road. Although Nina had noticed that her chosen route would have many bends, she had had no idea that she was in for such a tortuous or complex ride. When she had finally navigated through that winding, tortuous, and roundabout road, she felt like she too was all wound up";
-        const questionContent = {
-                                    question: "When is something considered tortuous?",
-                                    answers: [
-                                        "When it is complicated with many turns and bends.",
-                                        "When it takes all day long to complete.",
-                                        "When it almost makes you sick."
-                                    ],
-                                    correct_answer:1
-                                };                    
+        const content = this.props.content.sentence;
+        const questionContent = this.props.content.questionContent;         
         return (
             <div className="card">
                 <div className="context-heading card-header">Context</div>

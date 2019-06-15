@@ -15,10 +15,10 @@ export class Question extends Component{
             if(isAnswer){
                 let selectedOptions = this.state.selected_options;
                 selectedOptions.push(index);
-                // this.setState({
-                //     is_question_completed: true
-                // });
-                this.state.is_question_completed=true;
+                this.setState({
+                    is_question_completed: true
+                });
+                // this.state.is_question_completed=true;
                 this.setState({selected_options:selectedOptions});
                 this.props.triggerDefinition();
             } else{
@@ -36,7 +36,7 @@ export class Question extends Component{
             answer={answer} 
             key={index} 
             selected={this.state.selected_options.includes(index)} 
-            index={index} isAnswer={this.state.content.correct_answer==index+1} 
+            index={index} isAnswer={parseInt(this.state.content.correct_answer) === index+1} 
             wrongColor={this.state.wrong_answer_color} onClick={(i,j)=>this.handleClick(i,j)} />
         );
 
