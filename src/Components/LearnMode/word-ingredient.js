@@ -11,7 +11,7 @@ export function WordIngredient(props){
                         <tbody>
                             {props.content.roots.map((item,key)=>{
                                 return (        
-                                    <tr>
+                                    <tr key={key}>
                                         <td>
                                             <a className="wi-btn partform" data-tree-id="tort_twisted" data-tree-url="//cdn1.membean.com/public/data/treexml" href="#">
                                                 <span className=""></span>
