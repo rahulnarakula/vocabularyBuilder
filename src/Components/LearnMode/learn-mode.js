@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
-import {WordIngredient} from './word-ingredient';
-import {WordHeader} from './word-header';
-import {WordContent} from './word-content';
+import {WordContainer} from './word-container';
 
 export class LearnMode extends Component{
     constructor(props) {
@@ -12,8 +9,8 @@ export class LearnMode extends Component{
             currentPosition: null,
             listCount: null
         }
-
     }
+    
     componentDidMount() {
         fetch('https://my-json-server.typicode.com/rahulnarakula/vocabularyBuilder/words')
         .then(response =>  response.json())
@@ -49,21 +46,5 @@ export class LearnMode extends Component{
         }
     }
 }
-
-function WordContainer(props){
-        const wordBody = props.wordBody;
-        if(wordBody){
-            return (
-                <div className="container">                
-                    <WordHeader content={wordBody.wordDetails}/>
-                    <WordContent content={wordBody.wordContent}/>
-                    <WordIngredient content={wordBody.wordIngredient}/>
-                </div>
-            );
-        } else{
-            return null;
-        }
-}
-
 
 

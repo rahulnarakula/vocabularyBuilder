@@ -1,24 +1,74 @@
 import React, { Component } from 'react';
 
 export class TestMode extends Component{
-    render() {     
-        var content = "Nina’s long and tortuous journey was filled with twists and turns along the mountain road. Although Nina had noticed that her chosen route would have many bends, she had had no idea that she was in for such a tortuous or complex ride. When she had finally navigated through that winding, tortuous, and roundabout road, she felt like she too was all wound up";
-        var word = "tortuous";
-        var blank = new Array(word.length + 1).join('_');
-        var con = content.split(word).join(blank);
-        return (
-            <div className="container">
-            <div className="card">
-                <div className="context-heading card-header">Context</div>
-                <div className="context-body card-body">
-                    {con}
-                </div>
-            </div>
-            
-            <MissingWord word="tortuous"/>
-            </div>
-        );
+    constructor(props) {
+        super(props);
+        this.state = {
+            wordBodyList: null,
+            currentPosition: null,
+            listCount: null
+        }
+        this.incrementPosition = this.incrementPosition.bind(this);
     }
+    
+    componentDidMount() {
+        fetch('https://my-json-server.typicode.com/rahulnarakula/vocabularyBuilder/words')
+        .then(response =>  response.json())
+        .then(resData => {
+           this.setState({ 
+               wordBodyList: resData,
+               listCount: resData.length,
+               currentPosition: 0
+             }); //this is an asynchronous function
+        })
+    }
+
+    
+    incrementPosition(){
+        var position = this.state.currentPosition;
+        this.setState({
+            currentPosition: ++position
+        });
+    }
+
+    render() { 
+        const position = this.state.currentPosition;
+        const wordBodyList = this.state.wordBodyList;
+        if(position != null && position >= 0 && position < this.state.listCount && wordBodyList){
+            const word = wordBodyList[position].body.wordDetails.word;
+            const content = wordBodyList[position].body.wordContent.sentence;
+            return (
+                <div>
+                    <button onClick={this.incrementPosition}>next</button>
+                    <TestContainer content={content} word={word} getNextWord={()=>this.incrementPosition()}/>
+                </div>
+            );
+        } else{
+            return null;
+        }
+    }
+}
+
+export function TestContainer(props){         
+    var content = props.content;
+    var word = props.word;
+    var blank = new Array(word.length + 1).join('_');
+    var blankedContent = content.split(word).join(blank);
+    function CallNextWord(){
+        props.getNextWord()
+    }
+    return (
+        <div className="container">
+        <div className="card">
+            <div className="context-heading card-header">Context</div>
+            <div className="context-body card-body">
+                {blankedContent}
+            </div>
+        </div>
+        
+        <MissingWord word={word} getNextWord={()=>CallNextWord()}/>
+        </div>
+    );
 }
 
 export class MissingWord extends Component{
@@ -29,7 +79,8 @@ export class MissingWord extends Component{
             enteredWord: ""
         }            
         
-        this.handleChange = this.handleChange.bind(this);    
+        this.handleChange = this.handleChange.bind(this);   
+        this.callParentGetNextWord = this.callParentGetNextWord.bind(this);
 
     }
     
@@ -53,7 +104,6 @@ export class MissingWord extends Component{
         },
         () => {
             this.checkIsWordCompleted();
-            console.log(this.state.enteredLetters);
         }
         );
         this.checkIsWordCompleted();
@@ -68,8 +118,11 @@ export class MissingWord extends Component{
         }
     }
 
-    render() {
+    callParentGetNextWord(){
+        this.props.getNextWord();
+    }
 
+    render() {
         const word = this.props.word;
         const wordArray = word.split("");
         return (
@@ -79,7 +132,7 @@ export class MissingWord extends Component{
                     return (<MissingLetter key={i} letter={answer} letterPosition={i} handleChange={this.handleChange}/>);
                     })}
                 </div>
-                <WordResult word={this.props.word} enteredWord={this.state.enteredWord}/>
+                <WordResult word={this.props.word} enteredWord={this.state.enteredWord} callNextWord={()=>this.callParentGetNextWord()}/>
             </div>
         );
     }
@@ -104,6 +157,14 @@ export class WordResult extends Component{
                 } else if(missedLettersCount === 2) {                    
                     correct = "Missed by " + missedLettersCount + " letters";
                 }
+            } else{
+                // setTimeout(
+                //     function() {
+                //         this.props.callNextWord();
+                //     }
+                //     .bind(this),
+                //     3000
+                // );
             }
             return (
                 <div>
@@ -123,12 +184,15 @@ export class WordResult extends Component{
 }
 
 export class MissingLetter extends Component{
+    componentDidMount(){
+        document.getElementById("key-position-"+this.props.letterPosition).value = "";
+    }
     render() {
+        const keyPositionID = "key-position-"+this.props.letterPosition;
         return (
             <span className="letter-block m-2">
-                <input className="border" maxLength='1' onChange={(e) => {this.props.handleChange(e,this.props.letterPosition)}}/>
+                <input className="border" id={keyPositionID} maxLength='1' onChange={(e) => {this.props.handleChange(e,this.props.letterPosition)}}/>
             </span>
         );
     }
 }
-
