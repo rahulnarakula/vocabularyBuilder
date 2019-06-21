@@ -20,17 +20,17 @@ export class WordResult extends Component{
                     correct = "Missed by " + missedLettersCount + " letters";
                 }
             } else{
-                // setTimeout(
-                //     function() {
-                //         this.props.callNextWord();
-                //     }
-                //     .bind(this),
-                //     3000
-                // );
+                setTimeout(
+                    function() {
+                        this.props.callNextWord();
+                    }
+                    .bind(this),
+                    3000
+                );
             }
             return (
                 <div>
-                    <div className="card">{correct}</div>
+                    <div className="col d-flex justify-content-center my-5 card">{correct}</div>
                     {correct === "Correct" ? "" : 
                     <div>
                         <span className="wrong-answer">{input}</span>

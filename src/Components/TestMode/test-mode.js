@@ -39,8 +39,7 @@ export class TestMode extends Component{
             const word = wordBodyList[position].body.wordDetails.word;
             const content = wordBodyList[position].body.wordContent.sentence;
             return (
-                <div>
-                    <button onClick={this.incrementPosition}>next</button>
+                <div className="col d-flex justify-content-center mt-5 bg-info pt-3">
                     <TestContainer content={content} word={word} getNextWord={()=>this.incrementPosition()}/>
                 </div>
             );
@@ -50,15 +49,3 @@ export class TestMode extends Component{
     }
 }
 
-
-
-export class MissingLetter extends Component{
-    render() {
-        const keyPositionID = "key-position-"+this.props.letterPosition;
-        return (
-            <span className="letter-block m-2">
-                <input className="border single-letter" id={keyPositionID} maxLength='1' onChange={(e) => {this.props.handleChange(e,this.props.letterPosition)}}/>
-            </span>
-        );
-    }
-}

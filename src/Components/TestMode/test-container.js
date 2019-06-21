@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {MissingWord} from './missing-word';
 export function TestContainer(props){         
     var content = props.content;
@@ -17,7 +17,7 @@ export function TestContainer(props){
             </div>
         </div>
         
-        <MissingWord word={word} getNextWord={()=>CallNextWord()}/>
+        <MissingWord  word={word} getNextWord={()=>CallNextWord()}/>
         </div>
     );
 }
