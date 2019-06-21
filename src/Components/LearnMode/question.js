@@ -41,7 +41,6 @@ export class Question extends Component {
         }
     }
     render() {
-        console.log(this.props);
         const listAnswers = this.state.content.answers.map((answer, index) =>
             <AnswerOption
                 answer={answer}

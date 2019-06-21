@@ -44,8 +44,8 @@ export class LearnMode extends Component {
             );
         } else {
             return (<div className="container">
-                <div class="col d-flex justify-content-center mt-5">
-                    <div class="card p-5">
+                <div className="col d-flex justify-content-center mt-5">
+                    <div className="card p-5">
                         <h3>You have covered all the words.</h3>
                         
                         <Link className="test-link text-center d-block  p-3 border border-primary rounded mt-3" to="/test">Time to take a Test</Link>                        
