@@ -31,30 +31,83 @@
     { "id":2,
       "body":{
      "wordDetails": {
-         "word": "tortuous1",
-         "spell": "TAWR-choo-uhs"
+         "word": "slovenly",
+         "spell": "SLUHV-uhn-lee"
      },
      "wordContent": {
-         "sentence": "Nina’s long and tortuous1 journey was filled with twists and turns along the mountain road. Although Nina had noticed that her chosen route would have many bends, she had had no idea that she was in for such a tortuous1 or complex ride. When she had finally navigated through that winding, tortuous1, and roundabout road, she felt like she too was all wound up",
+         "sentence": "Johan and Serge lived in a messy, filthy apartment like slovenly pigs. Their kitchen sink, counters, and floors were filled with dirty dishes, which simply covered the slovenly kitchen along with a fair amount of moldy and spoiled food. Johan and Serge also wore sloppy, torn, and slovenly clothing that matched their greasy, uncombed hair. They did have plenty of money, so people wondered why they had decided to live in such a slovenly, untidy, and unclean way.",
          "questionContent": {
-             "question": "When is something considered tortuous?",
+             "question": "When is someone considered slovenly?",
              "answers": [
-                 "When it is complicated with many turns and bends.",
-                 "When it takes all day long to complete.",
-                 "When it almost makes you sick."
+                 "When he is distracted and unaware.",
+                 "When he does not care about appearances or personal hygiene.",
+                 "When he is slow to take care of himself."
              ],
-             "correct_answer":1
+             "correct_answer":2
          }
      },
      "wordIngredient": {
          "roots": [
-             {"root": "tort", "meaning": "twisted, wound, wrapped"},
-             {"root": "-uous", "meaning": "of the nature of"}
+             {"root": "-ly", "meaning": "in a particular way or manner"}
          ],
-         "example": "Something tortuous, like a mountain road or difficult language, is “twisted, wound, or wrapped” up so as to make it complex to navigate."
-     }
- 
+         "example": "If you say that someone is slovenly, you strongly disapprove of him because you think he is untidy or messy."
+     } 
              }
-     }
+     },
+     { "id":3,
+       "body":{
+      "wordDetails": {
+          "word": "potable",
+          "spell": "POH-tuh-buhl"
+      },
+      "wordContent": {
+          "sentence": " Although water is everywhere after a flood, it is often difficult to find potable water that is safe to consume. Wells and reservoirs become contaminated, and so the water inside becomes no longer potable or wholesome to drink. After the disastrous effects of Hurricane Katrina, getting potable, drinkable water and edible food to the victims was an enormous job. Water can often be made potable or fit to drink by boiling it, but one still must be careful.",
+          "questionContent": {
+              "question": "When is water potable?",
+              "answers": [
+                  "When it is difficult to find.",
+                  "When it has been gathered after rain.",
+                  "When it is OK to ingest or drink."
+              ],
+              "correct_answer":3
+          }
+      },
+      "wordIngredient": {
+          "roots": [
+              {"root": "pot", "meaning": "drink"},
+              {"root": "-able", "meaning": "handy, capable of"}
+          ],
+          "example": "Potable water is clean and safe to drink."
+      } 
+              }
+      },
+      { "id":4,
+        "body":{
+       "wordDetails": {
+           "word": "castigate",
+           "spell": "KAS-ti-gayt"
+       },
+       "wordContent": {
+           "sentence": "My Aunt Bertha used to castigate or severely criticize me when I forgot to take out the trash, for she somehow thought that was a great offense. She would also castigate or greatly scold me for not cleaning out my aquarium when it got too full of algae. I often wondered whether Aunt Bertha wasn’t castigated or punished for silly things like that when she was young, and that’s why she felt she had to so come down on me.",
+           "questionContent": {
+               "question": "What does it mean to castigate someone?",
+               "answers": [
+                   "To speak against or punish them.",
+                   "To isolate them by casting them out of a group.",
+                   "WTo spread harsh, untrue rumors about them."
+               ],
+               "correct_answer":1
+           }
+       },
+       "wordIngredient": {
+           "roots": [
+               {"root": "chast", "meaning": "pure, without stain"},
+               {"root": "ig", "meaning": "do, act"},
+               {"root": "-ate", "meaning": "make someone have a certain quality"}
+           ],
+           "example": "When you castigate someone, you criticize or punish him severely."
+       } 
+               }
+       }
   ]
 }
