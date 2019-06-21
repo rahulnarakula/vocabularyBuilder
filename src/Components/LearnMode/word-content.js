@@ -11,6 +11,13 @@ export class WordContent extends Component {
         };
         this.triggerDefinition = this.triggerDefinition.bind(this);
     }
+    componentWillReceiveProps(nextProps){
+        if (this.props.content && nextProps.content && this.props.content !== nextProps.content) {
+            this.setState({
+                should_display_definition: false
+            });
+        }
+    }
 
     triggerDefinition() {
         if (!this.state.should_display_definition) {

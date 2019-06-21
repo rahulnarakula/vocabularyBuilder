@@ -12,3 +12,21 @@ li.choice{
     padding:10px;
     font-size: 20px
 }
+
+.word-correction{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.wrong-answer{
+    color: red;
+}
+
+.correct-answer{
+    color: green;
+}
+
+.word-result{
+    font-size: 26px;
+    font-weight: bold;
+}

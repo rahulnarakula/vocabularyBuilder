@@ -83,35 +83,6 @@
           "example": "Potable water is clean and safe to drink."
       } 
               }
-      },
-      { "id":4,
-        "body":{
-       "wordDetails": {
-           "word": "castigate",
-           "spell": "KAS-ti-gayt"
-       },
-       "wordContent": {
-           "sentence": "My Aunt Bertha used to castigate or severely criticize me when I forgot to take out the trash, for she somehow thought that was a great offense. She would also castigate or greatly scold me for not cleaning out my aquarium when it got too full of algae. I often wondered whether Aunt Bertha wasn’t castigated or punished for silly things like that when she was young, and that’s why she felt she had to so come down on me.",
-           "questionContent": {
-               "question": "What does it mean to castigate someone?",
-               "answers": [
-                   "To speak against or punish them.",
-                   "To isolate them by casting them out of a group.",
-                   "WTo spread harsh, untrue rumors about them."
-               ],
-               "correct_answer":1
-           },
-           "definition": "Something that is tortuous, like a piece of writing, is long and complicated with many twists and turns of direction; a tortuous argument can be deceitful because it twists or turns the truth."
-       },
-       "wordIngredient": {
-           "roots": [
-               {"root": "chast", "meaning": "pure, without stain"},
-               {"root": "ig", "meaning": "do, act"},
-               {"root": "-ate", "meaning": "make someone have a certain quality"}
-           ],
-           "example": "When you castigate someone, you criticize or punish him severely."
-       } 
-               }
-       }
+      }
   ]
 }

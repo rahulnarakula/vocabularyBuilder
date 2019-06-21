@@ -11,7 +11,7 @@ export function TestContainer(props){
     return (
         <div className="container">
         <div className="card">
-            <div className="context-heading card-header">Context</div>
+            <div className="context-heading card-header">Enter the Spelling of missing word</div>
             <div className="context-body card-body">
                 {blankedContent}
             </div>

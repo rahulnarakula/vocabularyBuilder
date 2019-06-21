@@ -7,7 +7,8 @@ export class TestMode extends Component{
         this.state = {
             wordBodyList: null,
             currentPosition: null,
-            listCount: null
+            listCount: null,
+            colors:["#eff7ff","#ffe5eb","#e6ffe5"]
         }
         this.incrementPosition = this.incrementPosition.bind(this);
     }
@@ -34,17 +35,23 @@ export class TestMode extends Component{
 
     render() { 
         const position = this.state.currentPosition;
+        var colorPositon = position%this.state.colors.length;
+        document.body.style = 'background: '+ this.state.colors[colorPositon]+';';
         const wordBodyList = this.state.wordBodyList;
         if(position != null && position >= 0 && position < this.state.listCount && wordBodyList){
             const word = wordBodyList[position].body.wordDetails.word;
             const content = wordBodyList[position].body.wordContent.sentence;
             return (
-                <div className="col d-flex justify-content-center mt-5 bg-info pt-3">
+                <div className="col d-flex justify-content-center mt-5 pt-3">
                     <TestContainer content={content} word={word} getNextWord={()=>this.incrementPosition()}/>
                 </div>
             );
         } else{
-            return null;
+            return (
+                <div className="col d-flex justify-content-center mt-5 pt-3">
+                    <h2>Completed!</h2>
+                </div>
+            );
         }
     }
 }
